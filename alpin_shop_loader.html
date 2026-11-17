@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alpin Shop - Galeri Loader</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f1020;color:#eee;font-family:Arial,sans-serif;min-height:100vh;padding:24px 16px}
+h1{text-align:center;font-size:2.4rem;letter-spacing:2px;color:#ffd166}
+.sub{text-align:center;color:#9aa;margin:6px 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.box{background:#1b1d36;border-radius:16px;padding:18px;text-align:center}
+.stage{height:120px;display:flex;align-items:center;justify-content:center}
+.name{margin-top:10px;font-weight:bold;color:#ffd166}
+.tag{font-size:.8rem;color:#8a8fb0}
+footer{text-align:center;margin-top:28px;color:#8a8fb0}
+
+/* 1. Morphing */
+.blob{width:70px;height:70px;background:linear-gradient(135deg,#ff6b6b,#feca57);animation:morph 3s ease-in-out infinite}
+@keyframes morph{
+0%{border-radius:50%;transform:rotate(0)}
+25%{border-radius:10% 90% 30% 70%;transform:rotate(90deg)}
+50%{border-radius:0;transform:rotate(180deg) scale(.8)}
+75%{border-radius:70% 30% 90% 10%;transform:rotate(270deg)}
+100%{border-radius:50%;transform:rotate(360deg)}}
+
+/* 2. Elastic */
+.elastic{display:flex;gap:10px;align-items:flex-end;height:80px}
+.elastic i{width:22px;height:22px;border-radius:50%;background:#48dbfb;animation:boing 1.2s cubic-bezier(.3,1.8,.5,.6) infinite}
+.elastic i:nth-child(2){animation-delay:.15s;background:#1dd1a1}
+.elastic i:nth-child(3){animation-delay:.3s;background:#ff9ff3}
+@keyframes boing{
+0%,100%{transform:translateY(0) scale(1.3,.7)}
+50%{transform:translateY(-50px) scale(.8,1.3)}}
+
+/* 3. Liquid */
+.liquid{position:relative;width:100px;height:100px;filter:url(#goo)}
+.liquid i{position:absolute;top:35px;left:35px;width:30px;height:30px;border-radius:50%;background:#54a0ff}
+.liquid i:nth-child(1){animation:l1 2s ease-in-out infinite}
+.liquid i:nth-child(2){animation:l2 2s ease-in-out infinite}
+.liquid i:nth-child(3){animation:l3 2s ease-in-out infinite}
+@keyframes l1{50%{transform:translate(-30px,-25px)}}
+@keyframes l2{50%{transform:translate(30px,-25px)}}
+@keyframes l3{50%{transform:translate(0,32px) scale(1.3)}}
+
+/* 4. Morse */
+.morse{display:flex;gap:8px;align-items:center}
+.morse i{height:14px;border-radius:7px;background:#feca57;opacity:.2;animation:blink 2.4s infinite}
+.morse .d{width:14px}.morse .s{width:42px}
+.morse i:nth-child(2){animation-delay:.2s}.morse i:nth-child(3){animation-delay:.4s}
+.morse i:nth-child(4){animation-delay:.6s}.morse i:nth-child(5){animation-delay:.8s}
+.morse i:nth-child(6){animation-delay:1s}
+@keyframes blink{0%,30%,100%{opacity:.2}10%{opacity:1;box-shadow:0 0 12px #feca57}}
+
+/* 5. Orbit SVG */
+.orbit circle.ring{fill:none;stroke:#ff6b6b;stroke-width:8;stroke-linecap:round;stroke-dasharray:60 200;transform-origin:50px 50px;animation:spin 1.4s linear infinite,dash 2.8s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes dash{0%,100%{stroke-dasharray:20 240}50%{stroke-dasharray:150 110}}
+
+/* 6. Wave */
+.wave{display:flex;gap:6px;align-items:center;height:80px}
+.wave i{width:10px;height:60px;background:#1dd1a1;border-radius:5px;animation:wv 1s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.1s}.wave i:nth-child(3){animation-delay:.2s}
+.wave i:nth-child(4){animation-delay:.3s}.wave i:nth-child(5){animation-delay:.4s}
+@keyframes wv{0%,100%{transform:scaleY(.2)}50%{transform:scaleY(1)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+<filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+<feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"/></filter>
+</svg>
+
+<h1>Alpin Shop</h1>
+<p class="sub">Galeri Animasi Loading Infinite Loop</p>
+
+<div class="grid">
+<div class="box"><div class="stage"><div class="blob"></div></div><div class="name">Bentuk Labil</div><div class="tag">morphing</div></div>
+<div class="box"><div class="stage"><div class="elastic"><i></i><i></i><i></i></div></div><div class="name">Karet Loncat</div><div class="tag">elastic</div></div>
+<div class="box"><div class="stage"><div class="liquid"><i></i><i></i><i></i></div></div><div class="name">Tetes Embun</div><div class="tag">liquid</div></div>
+<div class="box"><div class="stage"><div class="morse"><i class="d"></i><i class="s"></i><i class="d"></i><i class="d"></i><i class="s"></i><i class="d"></i></div></div><div class="name">Sandi Kilat</div><div class="tag">titik morse</div></div>
+<div class="box"><div class="stage"><svg class="orbit" width="100" height="100" viewBox="0 0 100 100"><circle class="ring" cx="50" cy="50" r="38"/></svg></div><div class="name">Cincin Ular</div><div class="tag">SVG orbit</div></div>
+<div class="box"><div class="stage"><div class="wave"><i></i><i></i><i></i><i></i><i></i></div></div><div class="name">Gelombang Pasar</div><div class="tag">wave</div></div>
+</div>
+
+<footer>&copy; Alpin Shop</footer>
+</body>
+</html>
